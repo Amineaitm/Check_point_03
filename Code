@@ -1,0 +1,94 @@
+import pandas as pd 
+
+
+data=pd.read_csv("titanic-passengers.csv",sep=";")
+
+data
+
+data.head()
+
+data.tail()
+
+data['Age']
+data['Age'].values
+
+data.isnull()
+data.isnull().sum()
+
+data['Age'].fillna(data['Age'].median(),inplace=True)
+data.Embarked = data.Embarked.fillna('S')
+
+Label_Sex={"Sex": {"male":0,"female":1}}
+data.replace(Label_Sex,inplace=True)
+
+Label_Survived={"Survived": {"Yes":1,"No":0}}
+data.replace(Label_Survived,inplace=True)
+
+G=sns.FacetGrid(data,col='Survived')
+G.map(plt.hist,'Age',bins=20)
+
+grid=sns.FacetGrid(data,col="Survived",size=3,aspect=2)
+grid.map(sns.barplot,"Sex","Age",alpha=.5,ci=None)
+grid.add_legend()
+
+
+data[["Pclass","Survived"]].groupby(["Pclass"],as_index=True).mean()
+
+
+data.rename(columns={"Name": "Titre"})
+data
+
+data.drop(['Name'], axis=1)
+
+
+
+
+
+
+
+Titre_Dictionnaire ={
+
+                    "Capt":       "Officer",
+
+                    "Col":        "Officer",
+
+                    "Major":      "Officer",
+
+                      "Dr":         "Officer",
+
+                    "Rev":        "Officer",
+
+                    "Jonkheer":   "Royalty",
+
+                    "Don":        "Royalty",
+
+                    "Sir" :       "Royalty",
+
+                   "Lady" :      "Royalty",
+
+                  "the Countess": "Royalty",
+
+                    "Dona":       "Royalty",
+
+                    "Mme":        "Miss",
+
+                    "Mlle":       "Miss",
+
+                    "Miss" :      "Miss",
+
+                    "Ms":         "Mrs",
+
+                    "Mr" :        "Mrs",
+
+                    "Mrs" :       "Mrs",
+
+                    "Master" :    "Master"
+
+                    }
+
+            
+data.replace({"Name": Titre_Dictionnaire})
+
+
+
+
