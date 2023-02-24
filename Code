@@ -93,4 +93,36 @@ data
 
 
 
+my analysis:
+def plot_correlation_map( df ):
+
+    corr = df.corr()
+
+    s , ax = plt.subplots( figsize =( 12 , 10 ) )
+
+    cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
+
+    s = sns.heatmap(
+
+        corr, 
+
+        cmap = cmap,
+
+        square=True, 
+
+        cbar_kws={ 'shrink' : .9 }, 
+
+        ax=ax, 
+
+        annot = True, 
+
+        annot_kws = { 'fontsize' : 12 }
+
+        )
+The plot_correlation_map() function takes a pandas DataFrame df as input, calculates the correlation matrix between all pairs of columns in the DataFrame using df.corr(), and visualizes the resulting correlation matrix using a heatmap.
+The heatmap is generated using the seaborn library's heatmap() function, with the correlation matrix as input.
+The function sets the figure size to 12 by 10 inches and sets the color palette to a diverging color map. The resulting heatmap has annotations of the correlation values and a color bar to indicate the correlation magnitude. 
+This function is useful for quickly visualizing the correlation between all pairs of columns in a DataFrame and identifying any patterns or relationships between the variables. 
+It can be particularly useful for exploring the relationships between variables in large datasets with many columns.
+
 
